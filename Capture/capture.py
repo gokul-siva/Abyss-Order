@@ -60,7 +60,6 @@ def periodic_save():
 
     while not stop:
         while (now - recent).total_seconds() <= 150:
-            print("Inside", (now - recent).total_seconds())
             time.sleep(50)
             now = datetime.datetime.now()
 
@@ -71,14 +70,14 @@ def periodic_save():
             file.flush()
 
         except:
-            print("Indside except", data)
             pass
 
         recent = datetime.datetime.now()
-        print((now - recent).total_seconds())
 
 def stop_process():
     global stop
+    global data
+
     stop = True
     writer.writerows(data)
     data = []
