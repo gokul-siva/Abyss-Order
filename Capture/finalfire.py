@@ -10,6 +10,13 @@ import math
 import firebase_admin
 from firebase_admin import credentials, db
 
+
+
+##use \\ in the path
+path_to_json="C:\\Users\\sripr\\Downloads\\mouse2772-9e216-firebase-adminsdk-o884w-97a8cd3c97.json" 
+
+
+
 stop = False
 data = []
 data_frame = pd.DataFrame()
@@ -132,7 +139,7 @@ def sanitize_value(value):
 
 def upload_to_firebase(csv_file_path):
     # Initialize Firebase Admin SDK
-    cred = credentials.Certificate("C:\\Users\\sripr\\Downloads\\mouse2772-9e216-firebase-adminsdk-o884w-97a8cd3c97.json")  # Replace with your service account key file path
+    cred = credentials.Certificate(path_to_json)  # Replace with your service account key file path
     firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://mouse2772-9e216-default-rtdb.asia-southeast1.firebasedatabase.app/'  # Replace with your Firebase database URL
 })

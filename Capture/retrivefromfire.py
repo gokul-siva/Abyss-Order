@@ -2,26 +2,29 @@ import firebase_admin
 from firebase_admin import credentials, db
 import pandas as pd
 
+#use \\ in the path
+path_to_json="C:\\Users\\sripr\\Downloads\\mouse2772-9e216-firebase-adminsdk-o884w-97a8cd3c97.json"
+
+
 # Initialize Firebase Admin SDK with service account
-cred = credentials.Certificate("C:\\Users\\sripr\\Downloads\\mouse2772-9e216-firebase-adminsdk-o884w-97a8cd3c97.json")  # Replace with your service account key file path
+cred = credentials.Certificate(path_to_json)  # Replace with your service account key file path
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://mouse2772-9e216-default-rtdb.asia-southeast1.firebasedatabase.app/'  # Replace with your Firebase database URL
 })
 
 def fetch_and_save_user_data():
-    # Get a reference to the root of the database
+   
     ref = db.reference('/')
-    users = ref.get()  # Fetch all user data
+    users = ref.get()
 
-    # Debugging: print the structure of users
-    print("Structure of users:", users)
+    
 
     if users:
         print("Retrieving user data...")
         for user_name, user_data in users.items():
-            # Prepare the data for saving to CSV
+            
             rows = []
-            if isinstance(user_data, dict):  # Check if user_data is a dictionary
+            if isinstance(user_data, dict):  
                 for timestamp, data in user_data.items():
                     row = {
                         'timestamp': timestamp,
@@ -35,9 +38,9 @@ def fetch_and_save_user_data():
                         'press': data.get('press', None)
                     }
                     rows.append(row)
-            elif isinstance(user_data, list):  # Handle case where user_data is a list
+            elif isinstance(user_data, list):  
                 for item in user_data:
-                    # Assuming item is a dictionary-like structure
+                    
                     if isinstance(item, dict):
                         row = {
                             'timestamp': item.get('timestamp', None),
@@ -52,9 +55,9 @@ def fetch_and_save_user_data():
                         }
                         rows.append(row)
 
-            # Create a DataFrame and save to CSV
+            
             df = pd.DataFrame(rows)
-            file_name = f"{user_name}.csv"  # CSV file name based on user name
+            file_name = f"{user_name}.csv" 
             df.to_csv(file_name, index=False)
             print(f"Data for {user_name} saved to {file_name}.")
     else:
