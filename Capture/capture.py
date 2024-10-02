@@ -1,3 +1,21 @@
+import subprocess
+import sys
+
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+try:
+    import pynput
+    import tkinter as tk
+    import pandas as pd
+except ImportError:
+    install('pynput')
+    install('tk')
+    install('pandas')
+
+
+
 from pynput import mouse
 from pynput.keyboard import Listener
 from threading import Thread
