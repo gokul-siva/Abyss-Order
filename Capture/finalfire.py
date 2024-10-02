@@ -132,7 +132,7 @@ def sanitize_value(value):
         if is_json_compliant(float_val):
             return float_val
         else:
-            return 0.0  # Replace invalid float values with 0.0
+            return -1000 # Replace invalid float values with 0.0
     except ValueError:
         return value  # If not a float, return as is
     
@@ -151,7 +151,7 @@ def upload_to_firebase(csv_file_path):
     ref = db.reference(name_of_user)
     stamp=0
     # Upload each row of data under the corresponding timestamp
-    for _, row in df.iterrows():
+    for _, row in df.iterrows(): 
         sanitized_row = {key: sanitize_value(value) for key, value in row.items()}
         stamp=stamp+1
         ref.child(str(stamp)).set(sanitized_row)
