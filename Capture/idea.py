@@ -22,18 +22,18 @@ random.seed(date, year)
 # file.close()
 
 def on_move(x, y):
-    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-    data.append([now, x, y, None, None, None, None])
+    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+    data.append([now, x, y, None, None, 0, 0, None, None])
 
 def on_click(x, y, button, pressed):
-    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-    data.append([now, x, y, button == mouse.Button.left, pressed, None, None])
+    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+    data.append([now, x, y, button == mouse.Button.left, pressed, 0, 0, None, None])
 
 def on_press(key):
     try:
         key.char
-        now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-        data.append([now, None, None, None, None, key.char, True])
+        now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+        data.append([now, None, None, None, None, 0, 0, key.char, True])
     
     except:
         pass
@@ -41,8 +41,8 @@ def on_press(key):
 def on_release(key):
     try:
         key.char
-        now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-        data.append([now, None, None, None, None, key.char, False])
+        now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+        data.append([now, None, None, None, None, 0, 0, key.char, False])
 
     except:
         pass
@@ -85,8 +85,8 @@ def word():
     characters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
                   'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 
                   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
-                  '.', ',', '?', '!', ':', ';', '"', "'", '-', '—', '(', ')', '[', ']', '{', '}', 
-                  '+', '-', '*', '/', '=', '<', '>',
+                  '.', ',', '?', '!', ':', ';', '"', "'", '-', '(', ')', '[', ']', '{', '}', 
+                  '+', '*', '/', '=', '<', '>', "#", "_", "|"
                   ]
 
     for i in range(random.randint(7, 15)):
@@ -129,7 +129,7 @@ win.focus_force()
 stop = False
 file = open(f"{date}{year}.csv", "w", newline="\n")
 writer = csv.writer(file)
-writer.writerow(["timestamp", "x_position", "y_position", "button", "click", "key", "press"])
+writer.writerow(["timestamp", "x_position", "y_position", "button", "click", "dx", "dy", "key", "press"])
 file.flush()
 recent = datetime.datetime.now()
 
