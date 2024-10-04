@@ -23,7 +23,7 @@ random.seed(date, year)
 
 def on_move(x, y):
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-    data.append([now, x, y, None, None None, None])
+    data.append([now, x, y, None, None, None, None])
 
 def on_click(x, y, button, pressed):
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
