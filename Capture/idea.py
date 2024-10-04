@@ -1,16 +1,84 @@
 from re import template
 import tkinter as tk
 import random
+from pynput import mouse
+from pynput.keyboard import Listener
+from threading import Thread
+import tkinter as tk
+import time
+import datetime
+import pandas as pd
+import csv
 
-file = open("values.txt", "a")
+# file = open("values.txt", "a")
 randoms = []
+stop = False
+data = []
 code = 0
-date = 904
-year = 2005
+date, year = [6423, 3097]
 random.seed(date, year)
-file.write(str([date, year]))
-file.write("\n")
-file.close()
+# file.write(str([date, year]))
+# file.write("\n")
+# file.close()
+
+def on_move(x, y):
+    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+    data.append([now, x, y, None, None None, None])
+
+def on_click(x, y, button, pressed):
+    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+    data.append([now, x, y, button == mouse.Button.left, pressed, None, None])
+
+def on_press(key):
+    try:
+        key.char
+        now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        data.append([now, None, None, None, None, key.char, True])
+    
+    except:
+        pass
+
+def on_release(key):
+    try:
+        key.char
+        now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        data.append([now, None, None, None, None, key.char, False])
+
+    except:
+        pass
+
+def capture_mouse():
+    with mouse.Listener(on_move=on_move, on_click=on_click) as listen:
+        while not stop:
+            time.sleep(0.5)
+        listen.stop()
+
+def capture_keyboard():
+    with Listener(on_press=on_press, on_release=on_release) as listen:
+        while not stop:
+            time.sleep(0.5)
+        listen.stop()
+
+def periodic_save():
+    global recent
+    global data
+    now = datetime.datetime.now()
+
+    while not stop:
+        while (now - recent).total_seconds() <= 5:
+            time.sleep(5)
+            now = datetime.datetime.now()
+
+        try:
+            data[0]
+            writer.writerows(data)
+            data = []
+            file.flush()
+
+        except:
+            pass
+
+        recent = datetime.datetime.now()
 
 def word():
     temp = ""
@@ -27,34 +95,51 @@ def word():
     return temp
 
 def pack():
+    global stop
     global code
 
-    temp = code
+    temp = int(code)
     code += 1
 
-    if temp == button_count - 1:
-        print(temp, button_count)
+    if temp >= button_count:
+        stop = True
         win.destroy()
         return
 
     buttons[temp].pack()
-    buttons[temp].place(x=randoms[code][0], y=randoms[code][1])
+    buttons[temp].place(x=randoms[temp][0], y=randoms[temp][1])
 
     if len(randoms[temp]) == 3 and temp != 0:
         new = tk.Tk()
+        new.geometry("500x200+0+0")
         label = tk.Label(new, text=randoms[temp][2])
         label.pack()
         text = tk.Text(new, height=5, width=20)
         text.pack()
-        submit = tk.Button(new, text="submit", command=lambda: new.destroy() if text.get(1.0, "end-1c") == randoms[temp][2] else print(text.get(1.0, "end-1c")))
+        submit = tk.Button(new, text="submit", command=new.destroy)
         submit.pack()
 
     if temp != 0:
         buttons[temp - 1].destroy()
-    
+
 win = tk.Tk()
 win.attributes('-fullscreen', True)
 win.focus_force()
+
+stop = False
+file = open(f"{date}{year}bot.csv", "w", newline="\n")
+writer = csv.writer(file)
+writer.writerow(["timestamp", "x_position", "y_position", "button", "click", "key", "press"])
+file.flush()
+recent = datetime.datetime.now()
+
+capture = Thread(target=capture_mouse)
+keyboard = Thread(target=capture_keyboard)
+periodic = Thread(target=periodic_save)
+
+capture.start()
+keyboard.start()
+periodic.start()
 
 a = win.winfo_screenwidth()
 b = win.winfo_screenheight()
@@ -67,7 +152,6 @@ for i in range(button_count):
     else:
         randoms.append((random.randint(0, a), random.randint(0, b)))
 
-print(randoms)
 buttons = []
 count = 1
 
