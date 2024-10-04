@@ -2,10 +2,15 @@ from re import template
 import tkinter as tk
 import random
 
-from click import command
-
+file = open("values.txt", "a")
 randoms = []
 code = 0
+date = 904
+year = 2005
+random.seed(date, year)
+file.write(str([date, year]))
+file.write("\n")
+file.close()
 
 def word():
     temp = ""
@@ -27,27 +32,47 @@ def pack():
     temp = code
     code += 1
 
+    if temp == button_count - 1:
+        print(temp, button_count)
+        win.destroy()
+        return
+
     buttons[temp].pack()
     buttons[temp].place(x=randoms[code][0], y=randoms[code][1])
 
+    if len(randoms[temp]) == 3 and temp != 0:
+        new = tk.Tk()
+        label = tk.Label(new, text=randoms[temp][2])
+        label.pack()
+        text = tk.Text(new, height=5, width=20)
+        text.pack()
+        submit = tk.Button(new, text="submit", command=lambda: new.destroy() if text.get(1.0, "end-1c") == randoms[temp][2] else print(text.get(1.0, "end-1c")))
+        submit.pack()
+
+    if temp != 0:
+        buttons[temp - 1].destroy()
+    
 win = tk.Tk()
 win.attributes('-fullscreen', True)
+win.focus_force()
 
 a = win.winfo_screenwidth()
 b = win.winfo_screenheight()
+button_count = random.randint(10, 13)
 
-for i in range(random.randint(10, 13)):
-    if random.randint(0, 1):
+for i in range(button_count):
+    if i and random.randint(0, 1) and i != button_count - 1:
         randoms.append((random.randint(0, a), random.randint(0, b), word()))
 
     else:
         randoms.append((random.randint(0, a), random.randint(0, b)))
 
+print(randoms)
 buttons = []
 count = 1
 
 for i in randoms:
-    temp = tk.Button(win, text=count, command=lambda: (pack))
+    temp = tk.Button(win, text=count, command=pack)
     temp.pack_forget()
     
     buttons.append(temp)
