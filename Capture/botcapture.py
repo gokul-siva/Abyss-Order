@@ -5,7 +5,7 @@ import string
 
 def random_bot():
     start_time = time.time()
-    duration = 3 * 60  # Run for 3 minutes
+    duration = 2 * 60  # Run for 3 minutes
     screen_width, screen_height = pyautogui.size()
 
     while time.time() - start_time < duration:

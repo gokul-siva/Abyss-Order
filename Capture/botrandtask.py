@@ -106,110 +106,139 @@ def start_capture():
     keyboard.start()
     periodic.start()
 
-def open_youtube_and_click():
-    webbrowser.open("https://www.google.com/")
-    time.sleep(5)  # Wait for the browser to load
-    pyautogui.moveTo(232, 68, duration=2)  # Move to search bar
-    pyautogui.click()
-    time.sleep(0.5)
-    pyautogui.typewrite("youtube", interval=0.1)
-    pyautogui.press('enter')
-    time.sleep(5)
+# def open_youtube_and_click():
+#     webbrowser.open("https://www.google.com/")
+#     time.sleep(5)  # Wait for the browser to load
+#     pyautogui.moveTo(232, 68, duration=2)  # Move to search bar
+#     pyautogui.click()
+#     time.sleep(0.5)
+#     pyautogui.typewrite("youtube", interval=0.1)
+#     pyautogui.press('enter')
+#     time.sleep(5)
     
-    pyautogui.moveTo(815, 467, duration=1.5)  # Move to a link
-    pyautogui.click()
-    time.sleep(7)
+#     pyautogui.moveTo(815, 467, duration=1.5)  # Move to a link
+#     pyautogui.click()
+#     time.sleep(7)
     
 
-    pyautogui.moveTo(723, 515, duration=1.5)  # Move to a link
-    pyautogui.click()
-    time.sleep(5)
-
-    
-    pyautogui.moveTo(1620, 936, duration=1.5)  # Move to a link
-    pyautogui.click()
-    time.sleep(5)
+#     pyautogui.moveTo(723, 515, duration=1.5)  # Move to a link
+#     pyautogui.click()
+#     time.sleep(5)
 
     
+#     pyautogui.moveTo(1620, 936, duration=1.5)  # Move to a link
+#     pyautogui.click()
+#     time.sleep(5)
+
     
-    pyautogui.moveTo(834, 120, duration=1.5)  # Move to a video
-    pyautogui.click()
-    time.sleep(10)
     
-    pyautogui.typewrite("genshin impact", interval=0.1)
-    pyautogui.press('enter')
-    time.sleep(5)  # Watch video for 10 seconds
-
-    pyautogui.scroll(-500)  # Scroll down on YouTube
-    time.sleep(2)
-
-    pyautogui.moveTo(935, 995, duration=1.5)  # Move to a link
-    pyautogui.click()
-    time.sleep(5)
-
-    pyautogui.moveTo(1315, 615, duration=1.5)  # Move to a link
-    pyautogui.click()
-    time.sleep(5)
-
-    pyautogui.scroll(-900)  # Scroll down on YouTube
-    time.sleep(2)
-
-    pyautogui.moveTo(1061, 725, duration=1.5)  # Move to a link
-    pyautogui.click()
-    time.sleep(5)
-
-
-
-
-
-def search_random_word():
-    webbrowser.open("https://www.google.com/")
-    time.sleep(5)
+#     pyautogui.moveTo(834, 120, duration=1.5)  # Move to a video
+#     pyautogui.click()
+#     time.sleep(10)
     
-    pyautogui.moveTo(300, 100, duration=2)  # Move to search bar
-    pyautogui.click()
-    random_word = ''.join(random.choices(string.ascii_lowercase, k=8))
-    pyautogui.typewrite(random_word, interval=0.1)
-    pyautogui.press('enter')
-    time.sleep(5)
+#     pyautogui.typewrite("genshin impact", interval=0.1)
+#     pyautogui.press('enter')
+#     time.sleep(5)  # Watch video for 10 seconds
 
-    pyautogui.moveTo(450, 500, duration=1.5)  # Move to a random link
-    pyautogui.click()
-    time.sleep(5)
-    
-    pyautogui.scroll(-400)  # Scroll down on the webpage
-    time.sleep(3)
+#     pyautogui.scroll(-500)  # Scroll down on YouTube
+#     time.sleep(2)
 
-def browse_tabs():
-    webbrowser.open("https://www.google.com/")
-    time.sleep(5)
-    
-    pyautogui.hotkey('ctrl', 't')  # Open a new tab
-    time.sleep(1)
-    pyautogui.moveTo(300, 100, duration=2)  # Move to the new tab's search bar
-    pyautogui.click()
-    pyautogui.typewrite("random website", interval=0.1)
-    pyautogui.press('enter')
-    time.sleep(5)
+#     pyautogui.moveTo(935, 995, duration=1.5)  # Move to a link
+#     pyautogui.click()
+#     time.sleep(5)
 
-    pyautogui.moveTo(400, 300, duration=1.5)  # Move to a random link
-    pyautogui.click()
-    time.sleep(5)
+#     pyautogui.moveTo(1315, 615, duration=1.5)  # Move to a link
+#     pyautogui.click()
+#     time.sleep(5)
+
+#     pyautogui.scroll(-900)  # Scroll down on YouTube
+#     time.sleep(2)
+
+#     pyautogui.moveTo(1061, 725, duration=1.5)  # Move to a link
+#     pyautogui.click()
+#     time.sleep(5)
+
+
+
+
+
+# def search_random_word():
+#     webbrowser.open("https://www.google.com/")
+#     time.sleep(5)
     
-    pyautogui.scroll(-300)  # Scroll down
-    time.sleep(2)
+#     pyautogui.moveTo(300, 100, duration=2)  # Move to search bar
+#     pyautogui.click()
+#     random_word = ''.join(random.choices(string.ascii_lowercase, k=8))
+#     pyautogui.typewrite(random_word, interval=0.1)
+#     pyautogui.press('enter')
+#     time.sleep(5)
+
+#     pyautogui.moveTo(450, 500, duration=1.5)  # Move to a random link
+#     pyautogui.click()
+#     time.sleep(5)
     
-    pyautogui.hotkey('ctrl', 'tab')  # Switch to another tab
-    time.sleep(3)
-    pyautogui.hotkey('alt', 'left')  # Go back in one tab
-    time.sleep(2)
-    pyautogui.hotkey('alt', 'right')  # Go forward in another tab
-    time.sleep(2)
+#     pyautogui.scroll(-400)  # Scroll down on the webpage
+#     time.sleep(3)
+
+# def browse_tabs():
+#     webbrowser.open("https://www.google.com/")
+#     time.sleep(5)
+    
+#     pyautogui.hotkey('ctrl', 't')  # Open a new tab
+#     time.sleep(1)
+#     pyautogui.moveTo(300, 100, duration=2)  # Move to the new tab's search bar
+#     pyautogui.click()
+#     pyautogui.typewrite("random website", interval=0.1)
+#     pyautogui.press('enter')
+#     time.sleep(5)
+
+#     pyautogui.moveTo(400, 300, duration=1.5)  # Move to a random link
+#     pyautogui.click()
+#     time.sleep(5)
+    
+#     pyautogui.scroll(-300)  # Scroll down
+#     time.sleep(2)
+    
+#     pyautogui.hotkey('ctrl', 'tab')  # Switch to another tab
+#     time.sleep(3)
+#     pyautogui.hotkey('alt', 'left')  # Go back in one tab
+#     time.sleep(2)
+#     pyautogui.hotkey('alt', 'right')  # Go forward in another tab
+#     time.sleep(2)
 
 def random_bot():
-    tasks = [open_youtube_and_click, search_random_word, browse_tabs]
-    tasks=[open_youtube_and_click]
-    random.choice(tasks)()  # Randomly choose and execute a task
+    # tasks = [open_youtube_and_click, search_random_word, browse_tabs]
+    # tasks=[open_youtube_and_click]
+    # random.choice(tasks)()  # Randomly choose and execute a task
+    
+    start_time = time.time()
+    duration = 2 * 60  # Run for 3 minutes
+    screen_width, screen_height = pyautogui.size()
+
+    while time.time() - start_time < duration:
+        action = random.choice(['move', 'click', 'scroll', 'drag', 'type'])
+        x = random.randint(0, screen_width - 1)
+        y = random.randint(0, screen_height - 1)
+
+        if action == 'move':
+            pyautogui.moveTo(x, y, duration=random.uniform(0.5, 2))
+        
+        elif action == 'click':
+            pyautogui.click(x, y)
+        
+        elif action == 'scroll':
+            pyautogui.scroll(random.randint(-100, 100), x, y)
+        
+        elif action == 'drag':
+            x_end = random.randint(0, screen_width - 1)
+            y_end = random.randint(0, screen_height - 1)
+            pyautogui.dragTo(x_end, y_end, duration=random.uniform(0.5, 2))
+        
+        elif action == 'type':
+            random_char = random.choice(string.ascii_letters)
+            pyautogui.typewrite(random_char)
+
+        time.sleep(random.uniform(0.5, 3)) 
 
 def start_random_bot():
     bot_thread = Thread(target=random_bot)
