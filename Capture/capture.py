@@ -33,10 +33,6 @@ def on_move(x, y):
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
     data.append([now, x, y, None, None, 0, 0, None, None])
 
-def on_scroll(x, y, dx, dy):
-    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-    data.append([now, x, y, None, None, dx, dy, None, None])
-
 def on_click(x, y, button, pressed):
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
     data.append([now, x, y, button == mouse.Button.left, pressed, 0, 0, None, None])
@@ -60,7 +56,7 @@ def on_release(key):
         pass
 
 def capture_mouse():
-    with mouse.Listener(on_move=on_move, on_scroll=on_scroll, on_click=on_click) as listen:
+    with mouse.Listener(on_move=on_move, on_click=on_click) as listen:
         while not stop:
             time.sleep(0.5)
         listen.stop()
@@ -111,7 +107,7 @@ def start_capture():
     stop = False
     file = open("send.csv", "w", newline="\n")
     writer = csv.writer(file)
-    writer.writerow(["timestamp", "x_position", "y_position", "button", "click", "dx", "dy", "key", "press"])
+    writer.writerow(["timestamp", "x_position", "y_position", "button", "click", "key", "press"])
     file.flush()
     recent = datetime.datetime.now()
     
