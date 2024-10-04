@@ -10,16 +10,12 @@ import datetime
 import pandas as pd
 import csv
 
-# file = open("values.txt", "a")
 randoms = []
 stop = False
 data = []
 code = 0
 date, year = [2222, 7777]
 random.seed(date, year)
-# file.write(str([date, year]))
-# file.write("\n")
-# file.close()
 
 def on_move(x, y):
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
