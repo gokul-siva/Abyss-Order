@@ -166,16 +166,13 @@ def visualize_feature_importance(model, feature_names):
     plt.show()
 
 def visualize_data_distribution(human_data, bot_data, test_data):
-    print("Before:")
-    print(human_data.info())
-    print(bot_data.info())
-    print(test_data.info())
+   
 
     human_data = human_data[~human_data.index.duplicated(keep='first')]
     bot_data = bot_data[~bot_data.index.duplicated(keep='first')]
     test_data = test_data[~test_data.index.duplicated(keep='first')]
     
-    print("After:")
+   
     fig, axes = plt.subplots(3, 1, figsize=(15, 20))
     
     sns.scatterplot(data=human_data, x='x_position', y='y_position', ax=axes[0], alpha=0.5, color='blue')
@@ -260,7 +257,7 @@ def main():
     
     visualize_feature_importance(model, features.columns)
     
-    test_file = "D:\\AbyssOrder\\Abyss-Order\\datasets2\\test2\\vishalbasker.csv"
+    test_file = "D:\\AbyssOrder\\Abyss-Order\\datasets2\\test2\\22227777.csv"
     test_data = preprocess_data(load_data(test_file))
     
     # Visualize data distributions
