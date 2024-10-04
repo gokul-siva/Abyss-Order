@@ -200,7 +200,7 @@ def main():
     X_test = np.clip(X_test, -1e6, 1e6)
     X_train = np.clip(X_train, -1e6, 1e6)
     X_val=np.clip(X_val, -1e6, 1e6)
-    scaler = StandardScaler()
+    scaler = StandardScaler() v5 vb5
     X_train_scaled = scaler.fit_transform(X_train)
     X_val_scaled = scaler.transform(X_val)
     X_test_scaled = scaler.transform(X_test)

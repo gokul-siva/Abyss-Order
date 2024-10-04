@@ -78,7 +78,7 @@ def build_random_forest():
 
 def build_isolation_forest():
     return IsolationForest(contamination=0.1, random_state=42)
-
+    
 def build_lstm(input_shape):
     model = Sequential([
         LSTM(64, input_shape=input_shape, return_sequences=True),
