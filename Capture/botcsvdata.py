@@ -106,12 +106,17 @@ def start_capture():
     keyboard.start()
     periodic.start()
 
+def sleep(n):
+    for i in range(n):
+        for j in range(1000):
+            pass
 def open_youtube_and_click():
     webbrowser.open("https://www.google.com/")
-    time.sleep(5)  # Wait for the browser to load
+    #time.sleep(5)  # Wait for the browser to load
+    
     pyautogui.moveTo(232, 68, duration=2)  # Move to search bar
     pyautogui.click()
-    time.sleep(0.5)
+    sleep(1000)
     pyautogui.typewrite("youtube", interval=0.1)
     pyautogui.press('enter')
     time.sleep(5)
