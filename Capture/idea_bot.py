@@ -15,7 +15,7 @@ randoms = []
 stop = False
 data = []
 code = 0
-date, year = [6423, 3097]
+date, year = [2222, 7777]
 random.seed(date, year)
 
 def word():
@@ -47,10 +47,10 @@ time.sleep(10)
 
 for i in randoms:
     if len(i) == 3:
-        pyautogui.moveTo(338, 144, duration=random.random()*3)
+        pyautogui.moveTo(338, 144, duration=random.random())
         pyautogui.click()
         pyautogui.typewrite(i[2])
-        pyautogui.moveTo(338, 191, duration=random.random()*3)
+        pyautogui.moveTo(338, 191, duration=random.random())
         pyautogui.click()
-    pyautogui.moveTo(i[0], i[1], duration=random.random()*3)
+    pyautogui.moveTo(i[0], i[1], duration=random.random())
     pyautogui.click()
