@@ -15,7 +15,7 @@ randoms = []
 stop = False
 data = []
 code = 0
-date, year = [6423, 3097]
+date, year = [2222, 7777]
 random.seed(date, year)
 # file.write(str([date, year]))
 # file.write("\n")
@@ -23,7 +23,7 @@ random.seed(date, year)
 
 def on_move(x, y):
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-    data.append([now, x, y, None, None None, None])
+    data.append([now, x, y, None, None, None, None])
 
 def on_click(x, y, button, pressed):
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
@@ -127,7 +127,7 @@ win.attributes('-fullscreen', True)
 win.focus_force()
 
 stop = False
-file = open(f"{date}{year}bot.csv", "w", newline="\n")
+file = open(f"{date}{year}.csv", "w", newline="\n")
 writer = csv.writer(file)
 writer.writerow(["timestamp", "x_position", "y_position", "button", "click", "key", "press"])
 file.flush()
