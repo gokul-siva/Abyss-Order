@@ -113,61 +113,61 @@ def sleep(n):
 
 def open_youtube_and_click():
     webbrowser.open("https://www.google.com/")
-    #time.sleep(5)  # Wait for the browser to load
     
-    pyautogui.moveTo(232, 68, duration=2)  # Move to search bar
+    
+    pyautogui.moveTo(232, 68, duration=2)  
     pyautogui.click()
     sleep(5000)
     pyautogui.typewrite("youtube", interval=0.1)
     pyautogui.press('enter')
     sleep(5000)
     
-    pyautogui.moveTo(815, 467, duration=1.5)  # Move to a link
+    pyautogui.moveTo(815, 467, duration=1.5)  
     pyautogui.click()
     sleep(7000)
     
 
-    pyautogui.moveTo(723, 515, duration=1.5)  # Move to a link
+    pyautogui.moveTo(723, 515, duration=1.5)  
     pyautogui.click()
     sleep(5000)
 
     
-    pyautogui.moveTo(1620, 936, duration=1.5)  # Move to a link
+    pyautogui.moveTo(1620, 936, duration=1.5)  
     pyautogui.click()
     sleep(5000)
 
     
     
-    pyautogui.moveTo(834, 120, duration=1.5)  # Move to a video
+    pyautogui.moveTo(834, 120, duration=1.5) 
     pyautogui.click()
     sleep(10000)
     
     pyautogui.typewrite("genshin impact", interval=0.1)
     pyautogui.press('enter')
-    sleep(5000)  # Watch video for 10 seconds
+    sleep(5000)  
 
-    pyautogui.scroll(-500)  # Scroll down on YouTube
+    pyautogui.scroll(-500) 
     sleep(2000)
 
-    pyautogui.moveTo(935, 995, duration=1.5)  # Move to a link
+    pyautogui.moveTo(935, 995, duration=1.5)  
     pyautogui.click()
     sleep(5000)
 
-    pyautogui.moveTo(1315, 615, duration=1.5)  # Move to a link
+    pyautogui.moveTo(1315, 615, duration=1.5)
     pyautogui.click()
     sleep(5000)
 
-    pyautogui.scroll(-900)  # Scroll down on YouTube
+    pyautogui.scroll(-900)  
     sleep(2000)
 
-    pyautogui.moveTo(1061, 725, duration=1.5)  # Move to a link
+    pyautogui.moveTo(1061, 725, duration=1.5)  
     pyautogui.click()
     sleep(5000)
 
 def random_bot():
-    #tasks = [open_youtube_and_click, search_random_word, browse_tabs]
+   
     start_time = time.time()
-    duration = 2 * 60  # Run for 3 minutes
+    duration = 2 * 60  
     screen_width, screen_height = pyautogui.size()
 
     while time.time() - start_time < duration:
@@ -193,40 +193,8 @@ def random_bot():
             random_char = random.choice(string.ascii_letters)
             pyautogui.typewrite(random_char)
 
-        time.sleep(random.uniform(0.5, 3))  # Random delay between actions
-    #tasks=[open_youtube_and_click]
-    #random.choice(tasks)() 
+        time.sleep(random.uniform(0.5, 3))  
 
-"""def random_bot():
-    start_time = time.time()
-    duration = 2* 60  # Run for 2 minutes
-    screen_width, screen_height = pyautogui.size()
-
-    while time.time() - start_time < duration:
-        action = random.choice(['move', 'click', 'scroll', 'drag', 'type'])
-        x = random.randint(0, screen_width - 1)
-        y = random.randint(0, screen_height - 1)
-
-        if action == 'move':
-            pyautogui.moveTo(x, y, duration=random.uniform(0.5, 2))
-        
-        elif action == 'click':
-            pyautogui.click(x, y)
-        
-        elif action == 'scroll':
-            pyautogui.scroll(random.randint(-100, 100), x, y)
-        
-        elif action == 'drag':
-            x_end = random.randint(0, screen_width - 1)
-            y_end = random.randint(0, screen_height - 1)
-            pyautogui.dragTo(x_end, y_end, duration=random.uniform(0.5, 2))
-        
-        elif action == 'type':
-            random_char = random.choice(string.ascii_letters)
-            pyautogui.typewrite(random_char)
-
-        time.sleep(random.uniform(0.5, 3))  # Random delay between actions
-"""
 
 
 def start_random_bot():
