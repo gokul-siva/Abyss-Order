@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel Gen AI</title>
+    <title>Bot Detection System</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+       
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #0b1d42;
+            color: #fff;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+       
+        h1 {
+            font-size: 3rem;
+            color: #ffd700; 
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 25px rgba(255, 215, 0, 0.4);
+        }
+
+        
+        #captcha {
+            background-color: rgba(255, 255, 255, 0.1); 
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.1);
+            width: 350px;
+        }
+
+        p {
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        
+        input[type="text"] {
+            padding: 10px;
+            border: 2px solid #ffd700;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-top: 10px;
+            width: 80%;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ffd700;
+            color: #0b1d42;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 50%;
+        }
+
+        button:hover {
+            background-color: #ffed85;
+        }
+
+        
+        #captcha_error {
+            color: #ff4d4d;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bot Detection in Progress...you can freely use this website until suspicious activity detected</h1>
+
+    
+    <div id="captcha" style="display:none;">
+        <p>We suspect you're a bot! Please complete the CAPTCHA:</p>
+        <p>Type "1234" in the box below to continue:</p>
+        <input type="text" id="captcha_input" />
+        <button id="captcha_submit">Submit CAPTCHA</button>
+        <p id="captcha_error" style="color:red; display:none;">Incorrect CAPTCHA! Please try again.</p>
+    </div>
+
+    <script>
+        let data = [];
+        let interval = 22000;  
+
+        
+        document.onmousemove = function(e) {
+            let event = {
+                type: "mouse",
+                timestamp: new Date().toISOString(),
+                x_position: e.clientX,
+                y_position: e.clientY
+            };
+            data.push(event);
+        };
+
+        
+        document.onmousedown = function(e) {
+            let event = {
+                type: "click",
+                timestamp: new Date().toISOString(),
+                button: e.button === 0 ? "left" : "right",
+                x_position: e.clientX,
+                y_position: e.clientY
+            };
+            data.push(event);
+        };
+
+        
+        document.onkeydown = function(e) {
+            let event = {
+                type: "keyboard",
+                timestamp: new Date().toISOString(),
+                key: e.key,
+                press: "true"
+            };
+            data.push(event);
+        };
+
+        document.onkeyup = function(e) {
+            let event = {
+                type: "keyboard",
+                timestamp: new Date().toISOString(),
+                key: e.key,
+                press: "false"
+            };
+            data.push(event);
+        };
+        
+
+
+        
+        setInterval(function() {
+            if (data.length > 0) {
+                $.ajax({
+                    url: '/capture_data/',  
+                    type: 'POST',
+                    data: {
+                        'data[]': JSON.stringify(data),
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'  
+                    },
+                    success: function(response) {
+                        if (response.captcha === true) {
+                            $('#captcha').show();  
+                        } else {
+                            $('#captcha').hide();  
+                            
+                        }
+                        //data = [];  // Clear data after sending
+                        
+                    },
+                    error: function() {
+                        console.log("Error in sending data to server.");
+                    }
+                });
+            }
+        }, interval);
+
+        
+        $('#captcha_submit').click(function() {
+            let captchaValue = $('#captcha_input').val();
+            if (captchaValue === "1234") {
+                alert("CAPTCHA Passed! You may continue.");
+                $('#captcha').hide();  
+            } else {
+                $('#captcha_error').show();  
+            }
+        });
+    </script>
+</body>
+</html>
