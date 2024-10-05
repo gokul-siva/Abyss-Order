@@ -7,14 +7,13 @@ from threading import Thread
 import tkinter as tk
 import time
 import datetime
-import pandas as pd
 import csv
 
 randoms = []
 stop = False
 data = []
 code = 0
-date, year = [2222, 7777]
+date, year = [5423, 5532]
 random.seed(date, year)
 
 def on_move(x, y):
