@@ -13,7 +13,7 @@ randoms = []
 stop = False
 data = []
 code = 0
-date, year = [5423, 5532]
+date, year = [7525, 3773]
 random.seed(date, year)
 
 def on_move(x, y):
