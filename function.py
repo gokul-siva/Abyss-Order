@@ -58,7 +58,7 @@ def preprocess(file):
     df_encoded["click"] = df_encoded["click"].astype(float)
     df_encoded["press"] = df_encoded["press"].astype(float)
 
-    sequence = create_sequences(df_encoded, 50, 30)
+    sequence = create_sequences(df_encoded, 63, 58)
     sequence[np.isnan(sequence)] = 0
 
     sequence = torch.from_numpy(sequence)
@@ -81,3 +81,5 @@ def predict(sequence):
         if i == 1:
             count += 1
     print("Bot percentage:", count / len(prediction_class))
+
+predict(preprocess("D:\\AbyssOrder\\Abyss-Order\\datasets2\\processed\\3102004.csv"))

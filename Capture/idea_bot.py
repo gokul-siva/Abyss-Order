@@ -47,10 +47,10 @@ time.sleep(10)
 
 for i in randoms:
     if len(i) == 3:
-        pyautogui.moveTo(338, 144, duration=random.random())
+        pyautogui.moveTo(338, 144, duration=random.random()*3)
         pyautogui.click()
         pyautogui.typewrite(i[2])
-        pyautogui.moveTo(338, 191, duration=random.random())
+        pyautogui.moveTo(338, 191, duration=random.random()*3)
         pyautogui.click()
-    pyautogui.moveTo(i[0], i[1], duration=random.random())
+    pyautogui.moveTo(i[0], i[1], duration=random.random()*3)
     pyautogui.click()
