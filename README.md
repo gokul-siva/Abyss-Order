@@ -5,11 +5,13 @@
 Members: Gokulakannan, Sri Prasad
 
 **Problem statement:**
+
 To implement a passive captcha.
 Normal captcha requires you to type distored text or select a check box. This repository implements a LSTM to analyse the user behaviour from the sequence of mouse cursor positions, keystrokes, mouse clicks and classify the user as a potential bot. And with that information 
 
 
 **Our AI Solution**
+
 This project presents a passive CAPTCHA using AI that detects bot-like behavior without requiring user interaction. By analyzing a user's activity, such as mouse movements, clicks, and keystrokes, within a short window of just 10 seconds, we can predict if the user is human or bot.
 
 The backbone of this system is a Long Short-Term Memory (LSTM) model trained to classify user behaviors based on input sequences. The model leverages behavioral data like mouse positions, clicks, and keyboard presses to differentiate between humans and bots with high accuracy.
@@ -24,6 +26,7 @@ All that’s required to prove you're human is to use the website normally!
 
 
 **How It Works**
+
 Data Capturing
 Our AI model gathers data from:
 
@@ -34,6 +37,7 @@ The activity is captured automatically during interaction with the website and s
 
 
 **Model Architecture**
+
 The core of the solution is an LSTM neural network that processes sequences of user actions and classifies them as either human or bot behavior. Here's how it’s structured:
 
 Input Layer: Takes the sequence of actions (mouse, keyboard, etc.).
@@ -42,12 +46,14 @@ Fully Connected Layer: Maps the LSTM outputs to a classification result—either
 
 
 **Model Training**
+
 The model was trained using real-world data from both human users and bots. Data was collected through custom-built GUIs, capturing the natural interaction patterns of humans versus programmed bot behavior. The model was trained in two phases using Jupyter notebooks:
 
 Training.ipynb: For training the LSTM model.
 Testing.ipynb: For evaluating the model’s accuracy and generalization.
 
 **Data Collection**
+
 Datasets were collected from various individuals and bot simulations:
 
 datasets/ and datasets2/: Contain CSV files of captured user activity.
@@ -55,7 +61,8 @@ Capture/: Contains the Python scripts (Capture_gui.py and bot_gui.py) used to co
 
 
 
-Project Structure
+**Project Structure**
+
 Here is a brief overview of the folder structure:
 
 BotDetectionProject/
@@ -95,6 +102,7 @@ To run the passive CAPTCHA Django application, follow these steps:
 Open your browser and go to http://127.0.0.1:8000/ to view the main page of the bot detection system.
 
 **Future Scope:**
+
 Model Enhancement: Improving the LSTM model by integrating additional behavioral features.
 Scalability: Making the solution scalable to support high-traffic websites.
 Generalization: Increasing the dataset to train the model with various behaviors and bots.
