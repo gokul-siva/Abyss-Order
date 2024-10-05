@@ -1,13 +1,8 @@
 import torch
 import torch.nn as nn
-import torch.optim as optim
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
-from sklearn.model_selection import train_test_split
-from torch.utils.data import DataLoader, Dataset
-from sklearn.metrics import accuracy_score, classification_report
-import os
+from sklearn.preprocessing import OneHotEncoder
 
 class LSTMClassifier(nn.Module):
     def __init__(self, input_size=5, hidden_layer_size=50, output_size=2):
@@ -86,6 +81,3 @@ def predict(sequence):
         if i == 1:
             count += 1
     print("Bot percentage:", count / len(prediction_class))
-
-
-predict(preprocess("D:/AbyssOrder/Abyss-Order/datasets2/test2/22227777.csv"))
