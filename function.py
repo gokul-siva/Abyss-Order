@@ -54,7 +54,7 @@ def preprocess(file):
                     ]]
 
     data["key"] = data["key"].replace(-1, "ae")
-    encoder = OneHotEncoder(categories=categories, sparse_output=False)
+    encoder = OneHotEncoder(categories=categories, sparse=False)
     encoded = encoder.fit_transform(data[["key"]])
     encoded_df = pd.DataFrame(encoded, columns=encoder.get_feature_names_out(['key']))
     df_encoded = pd.concat([data.drop('key', axis=1), encoded_df], axis=1)
@@ -73,7 +73,7 @@ def preprocess(file):
 
 def predict(sequence):
     model = LSTMClassifier(input_size=94, hidden_layer_size=188, output_size=2)
-    model.load_state_dict(torch.load("model.pth"))
+    model.load_state_dict(torch.load("D:\AbyssOrder\Abyss-Order\model.pth"))
     model.eval()
 
     with torch.no_grad():
@@ -86,3 +86,6 @@ def predict(sequence):
         if i == 1:
             count += 1
     print("Bot percentage:", count / len(prediction_class))
+
+
+predict(preprocess("D:/AbyssOrder/Abyss-Order/datasets2/test2/22227777.csv"))
