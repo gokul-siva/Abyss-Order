@@ -28,12 +28,15 @@ All that’s required to prove you're human is to use the website normally!
 
 **How It Works**
 
-Data Capturing
-Our AI model gathers data from:
+Data Capturing:
+Our AI model gathers data from,
 
 1)Mouse Movements (x and y positions)
+
 2)Mouse Clicks (button type and click status)
+
 3)Keystrokes (key pressed and whether it's a hold or release)
+
 The activity is captured automatically during interaction with the website and stored in CSV format. This data is then preprocessed to create sequences that are fed into the LSTM model.
 
 
