@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import json
+from datetime import datetime as dt
 import csv
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -219,3 +220,11 @@ def capture_data_view(request):
             return JsonResponse({'captcha': False})
 
     return render(request, 'index.html')
+
+
+def display(request):
+    date=dt.now()
+    msg="Hello!"
+    t_dict={'DATE':date,'str':msg}
+    return render(request,'index.html',context=t_dict)
+
