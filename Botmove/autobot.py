@@ -53,4 +53,4 @@ for i in randoms:
         pyautogui.moveTo(338, 191, duration=random.random()*3)
         pyautogui.click()
     pyautogui.moveTo(i[0], i[1], duration=random.random()*3)
-    pyautogui.click()
+    pyautogui.click
