@@ -222,9 +222,4 @@ def capture_data_view(request):
     return render(request, 'index.html')
 
 
-def display(request):
-    date=dt.now()
-    msg="Hello!"
-    t_dict={'DATE':date,'str':msg}
-    return render(request,'index.html',context=t_dict)
 
